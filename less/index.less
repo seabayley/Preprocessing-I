@@ -53,7 +53,113 @@ table {
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+
+/* [======== Template Variables ========] */
+
+/* theme colors and fonts*/
+
+@lightGrey: #9F9F9F;
+@mediumGrey: #7C7C7C;
+@darkGrey: #5A5A5A;
+@lightBlack: #030303;
+@whiteGrey: #F5F5F5;
+
+@mainFont: 'Share Tech Mono', monospace;
+
+/* Mixins */
+
+.isFlex() {
+	display: flex;
 }
 
+.responsive(@maxWidth; @rules) {
+    @media only screen and (max-width: @maxWidth) {
+        @rules();
+    }
+}
+
+html, body {
+  background-color: @lightGrey;
+  font-family: @mainFont;
+  .isFlex();
+  justify-content: center;
+  .responsive(500px, {
+	font-size: 62.5%;
+});
+
+}
+
+body {
+	max-width: 800px;
+	flex-direction: column;
+
+	header {
+		.isFlex();
+		margin-top: 20px;
+
+		.leftContent {
+			width: 50px;
+			.verticalText {
+				font-size: 2.9rem;
+				writing-mode: vertical-lr;
+				text-orientation: mixed;
+				direction: rtl;
+				transform: rotate(180deg);
+				transform-origin: right bottom 0 0;
+			}
+
+		}
+
+		.midContent {
+			border-bottom: 20px solid @lightBlack;
+			border-right: 20px solid @lightBlack;
+			margin-right: 10px;
+			margin-left: 5px;
+			padding-right: 8px;
+			padding-bottom: 5px;
+
+
+		}
+
+		.rightContent {
+			.isFlex();
+			flex-direction: column;
+			justify-content: space-between;
+
+			.navLink {
+				text-decoration: none;
+				color: @lightBlack;
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+	.aboutMe {
+		padding-top: 50px;
+		margin-top: 100px;
+		background-color: @lightBlack;
+		color: @lightGrey;
+		h2 {
+			width: 100%;
+			font-size: 2.5rem;
+			padding: 5px;
+		}
+
+		h3 {
+			font-size: 2rem;
+			padding-left: 30px;
+			margin-bottom: 5px;
+		}
+
+		p {
+			padding-left: 60px;
+			margin-bottom: 6px;
+		}
+
+		.comment {
+			padding-left: 20px;
+			color: green;
+		}
+	}
+}
